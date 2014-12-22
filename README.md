@@ -68,19 +68,19 @@ Tasks:
 
 I named entities, owners in the codebase (because they "own" a wallet). Currently, owners can be subclassed as either users or teams.  I'll be referring to them as owners throughout the rest of this README.
 
-## Some questions for the product owners
+## Questions for the product owners
 
-Should more than 1 wallet per owner be allowed?
-If not, we could gain performance by merging wallets and owners into a single table.
-Should more than 1 deposit and 1 withdraw be allowed per entry?
-Should owners be deletable? If so, what should happen to their wallets and entries?
+* Should more than 1 wallet per owner be allowed?
+* If not, we could gain performance by merging wallets and owners into a single table.
+* Should more than 1 deposit and 1 withdraw be allowed per entry?
+* Should owners be deletable? If so, what should happen to their wallets and entries?
 
 ## ToDo
 
-Differentiate between normal and bottomless wallets in the UI.
-Display balances dynamically when selecting wallets on the new entry screen.
-Make the UI pretty.
-Investigate adding a caching layer to hold wallet balances for scalability.  After persisting an Entry, update the cache by operating directly on the cached balance of every affected Wallet and queue a background task to re-calculate the cached balance from all persisted Amounts as a sanity check.  This would provide much better performance and still guarantee historical accuracy.  We can prevent bottlenecks at the database level by offloading the background task to another machine that could run 100% off a dedicated read replica except in the case of a sanity check failure where we might want to temporarily suspend a wallet and notify a human to investigate.
+* Differentiate between normal and bottomless wallets in the UI.
+* Display balances dynamically when selecting wallets on the new entry screen.
+* Make the UI pretty.
+* Investigate adding a caching layer to hold wallet balances for scalability.  After persisting an Entry, we could update the cache by operating directly on the cached balance of every affected Wallet and queue a background task to re-calculate it from all persisted Amounts as a sanity check.  This would provide much better performance and still guarantee historical accuracy.  We can prevent bottlenecks at the database level by offloading the background task to another machine that could run 100% off a dedicated read replica except in the case of a sanity check failure where we might want to temporarily suspend a wallet and notify a human to investigate.
 
 ## Contributing
 
