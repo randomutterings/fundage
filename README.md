@@ -109,7 +109,7 @@ Investigate adding a caching layer to hold wallet balances for scalability.  Aft
   bundle exec guard
 ```
 
-### Bug reports
+## Bug reports
 
 If you discover any bugs, feel free to create an issue on [GitHub](https://github.com/randomutterings/fundage/issues). Please add as much information as possible. We also encourage you to help even more by forking and sending us a pull request.
 
