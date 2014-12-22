@@ -1,0 +1,47 @@
+<h1>New Entry</h1>
+
+<%= form_for @entry do |f| %>
+  <% if @entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+
+      <ul>
+      <% @entry.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <ul>
+    <%= f.fields_for :debits do |df| %>
+      <li>
+        <%= df.label :amount, 'Withdraw' %>
+        <%= df.text_field :amount %>
+
+        <%= df.label :wallet_id, 'From' %>
+        <%= df.collection_select(:wallet_id, @wallets, :id, :name) %>
+      </li>
+    <% end %>
+  </ul>
+
+  <ul>
+    <%= f.fields_for :credits do |df| %>
+      <li>
+        <%= df.label :amount, 'Deposit' %>
+        <%= df.text_field :amount %>
+
+        <%= df.label :wallet_id, 'To' %>
+        <%= df.collection_select(:wallet_id, @wallets, :id, :name) %>
+      </li>
+    <% end %>
+  </ul>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+</br>
+
+<%= link_to 'Back', entries_path %>

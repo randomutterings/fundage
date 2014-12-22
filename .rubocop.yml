@@ -1,0 +1,12 @@
+Metrics/LineLength:
+  Enabled: false
+
+Validation:
+  Enabled: false
+
+AllCops:
+  Exclude:
+    - 'Guardfile'
+    - 'bin/*'
+    - 'db/**/*'
+  RunRailsCops: true

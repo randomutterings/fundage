@@ -1,0 +1,20 @@
+<p><%= owner.name %></p>
+<p>
+  Balance:
+  <%= owner.balance %>
+</p>
+
+<%- owner.debits.each do |debit| %>
+  <p><%= debit.amount %> to <%= debit.to %></p>
+<% end %>
+
+<%- owner.credits.each do |credit| %>
+  <p><%= credit.amount %> from <%= credit.from %></p>
+<% end %>
+
+<p>
+  <%= link_to 'Show', owner unless current_page?(controller: @klass.to_s.downcase.pluralize, action: 'show', id: owner.id)%>
+  <%= link_to 'Destroy', owner, method: :delete, data: { confirm: 'Are you sure?' } %>
+</p>
+
+<br>

@@ -1,0 +1,5 @@
+<h1>Listing <%= @klass.to_s.pluralize %></h1>
+
+<%= render partial: 'owner', collection: @owners %>
+
+<%= link_to "New #{@klass.to_s}", "#{@klass.to_s.downcase.pluralize}/new" %>

@@ -1,0 +1,30 @@
+<h1>New Owner</h1>
+
+<%= form_for @owner do |f| %>
+  <% if @owner.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@owner.errors.count, "error") %> prohibited this owner from being saved:</h2>
+
+      <ul>
+      <% @owner.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="fields">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  </br>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+</br>
+
+<%= link_to 'Back', "/#{@klass.to_s.downcase.pluralize}" %>
