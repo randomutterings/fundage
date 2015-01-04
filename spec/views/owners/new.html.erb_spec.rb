@@ -7,6 +7,6 @@ RSpec.describe 'owners/new', type: :view do
 
   it 'renders new owner form' do
     render
-    expect(rendered).to match('<form accept-charset="UTF-8" action="/owners" class="new_owner" id="new_owner" method="post">')
+    expect(rendered).to match('<form accept-charset="UTF-8" action="/owners" class="new_owner" data-abide="" id="new_owner" method="post">')
   end
 end
