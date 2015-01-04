@@ -14,6 +14,6 @@ class Wallet < ActiveRecord::Base
   end
 
   def can_fund?(amount)
-    balance - amount >= 0
+    amount && balance - amount >= 0
   end
 end

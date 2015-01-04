@@ -33,5 +33,13 @@ RSpec.describe Wallet, type: :model do
     it 'is false when not enough funds are available' do
       expect(subject.can_fund?(10.01)).to be_falsey
     end
+
+    it 'is true when no funds are required' do
+      expect(subject.can_fund?(0.0)).to be_truthy
+    end
+
+    it 'is false without valid params' do
+      expect(subject.can_fund?(nil)).to be_falsey
+    end
   end
 end
