@@ -33,14 +33,14 @@ class OwnersController < ApplicationController
   def create
     @owner = @klass.new(permitted_params)
 
-    flash[:notice] = 'Owner was successfully created.' if @owner.save && Wallet.create(owner: @owner)
+    flash[:success] = 'Owner was successfully created.' if @owner.save && Wallet.create(owner: @owner)
     respond_with(@owner)
   end
 
   # PUT /owners/1/edit
   # PUT /owners/1/edit.json
   def update
-    flash[:notice] = 'Owner was successfully updated.' if @owner.update(permitted_params)
+    flash[:success] = 'Owner was successfully updated.' if @owner.update(permitted_params)
     respond_with(@owner)
   end
 
@@ -48,9 +48,9 @@ class OwnersController < ApplicationController
   # DELETE /owners/1.json
   def destroy
     if @owner.destroy
-      flash[:notice] = 'Owner was successfully destroyed.'
+      flash[:success] = 'Owner was successfully destroyed.'
     else
-      flash[:notice] = @owner.wallet.errors.full_messages.to_sentence
+      flash[:alert] = @owner.wallet.errors.full_messages.to_sentence
     end
     respond_with(@owner)
   end

@@ -6,13 +6,19 @@
 
     <title><%= content_for?(:title) ? yield(:title) : 'Fundage' %></title>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'vendor/modernizr' %>
-    <%= javascript_include_tag 'application' 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
 
   <body>
+    <div class="row">
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: "alert-box #{name} radius" if msg.is_a?(String) %>
+      <% end %>
+    </div>
+
     <div class="row">
       <div class="small-3 column">
         <%= link_to 'Owners', owners_path %> ->
@@ -21,7 +27,6 @@
         <%= link_to 'Entries', entries_path %>
       </div>
       <div class="small-9 column">
-        <p id='notice'><%= notice %></p>
         <%= yield %>
       </div>
     </div>

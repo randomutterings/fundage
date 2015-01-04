@@ -1,9 +1,9 @@
 <h1>New Owner</h1>
 
-<%= form_for @owner do |f| %>
+<%= form_for @owner, data: {abide: ''} do |f| %>
   <% if @owner.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@owner.errors.count, "error") %> prohibited this owner from being saved:</h2>
+    <div id='error_explanation'>
+      <h2><%= pluralize(@owner.errors.count, 'error') %> prohibited this owner from being saved:</h2>
 
       <ul>
       <% @owner.errors.full_messages.each do |message| %>
@@ -13,18 +13,22 @@
     </div>
   <% end %>
 
-  <div class="fields">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+  <div class='row'>
+    <div class='small-10 columns'>
+      <div class='row collapse'>
+        <div class='small-10 columns'>
+          <%= f.text_field :name, placeholder: "Enter a name for the #{@owner.class.to_s.downcase}", required: '' %>
+          <small class="error">Name is required.</small>
+        </div>
+        <div class='small-2 columns'>
+          <%= f.submit 'Create', class: 'button postfix' %>
+        </div>
+      </div>
+    </div>
   </div>
 
-  </br>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
 
 </br>
 
-<%= link_to 'Back', "/#{@klass.to_s.downcase.pluralize}" %>
+<%= link_to 'Back', "/#{@klass.to_s.downcase.pluralize}", class: 'button tiny radius secondary' %>

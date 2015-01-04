@@ -2,4 +2,4 @@
 
 <%= render partial: 'owner', collection: @owners %>
 
-<%= link_to "New #{@klass.to_s}", "#{@klass.to_s.downcase.pluralize}/new" %>
+<%= link_to "New #{@klass.to_s}", "#{@klass.to_s.downcase.pluralize}/new", class: 'button small radius' %>
