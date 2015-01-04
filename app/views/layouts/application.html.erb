@@ -1,20 +1,29 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Fundage</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
 
-<%= link_to 'Owners', owners_path %> ->
-[<%= link_to 'Users', users_path %>
-<%= link_to 'Teams', teams_path %>]
-<%= link_to 'Entries', entries_path %>
+    <title><%= content_for?(:title) ? yield(:title) : 'Fundage' %></title>
 
-<p id="notice"><%= notice %></p>
-<%= yield %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'vendor/modernizr' %>
+    <%= javascript_include_tag 'application' 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
 
-</body>
+  <body>
+    <div class="row">
+      <div class="small-3 column">
+        <%= link_to 'Owners', owners_path %> ->
+        [<%= link_to 'Users', users_path %>
+        <%= link_to 'Teams', teams_path %>]
+        <%= link_to 'Entries', entries_path %>
+      </div>
+      <div class="small-9 column">
+        <p id='notice'><%= notice %></p>
+        <%= yield %>
+      </div>
+    </div>
+  </body>
 </html>
