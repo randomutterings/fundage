@@ -1,34 +1,18 @@
-<h1>New Owner</h1>
+<h1>New <%= @owner.class.to_s.humanize %></h1>
 
-<%= form_for @owner, data: {abide: ''} do |f| %>
-  <% if @owner.errors.any? %>
-    <div id='error_explanation'>
-      <h2><%= pluralize(@owner.errors.count, 'error') %> prohibited this owner from being saved:</h2>
-
-      <ul>
-      <% @owner.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= simple_form_for @owner, data: {abide: ''} do |f| %>
   <div class='row'>
     <div class='small-10 columns'>
       <div class='row collapse'>
-        <div class='small-10 columns'>
-          <%= f.text_field :name, placeholder: "Enter a name for the #{@owner.class.to_s.downcase}", required: '' %>
-          <small class="error">Name is required.</small>
-        </div>
-        <div class='small-2 columns'>
-          <%= f.submit 'Create', class: 'button postfix' %>
+        <%= f.input :name, placeholder: "Enter a name for the #{f.object_name}", input_html: {required: ''} %>
+        <div class='small-2 columns form-actions'>
+          <%= f.button :wrapped, class: "postfix" %>
         </div>
       </div>
     </div>
   </div>
-
 <% end %>
 
 </br>
 
-<%= link_to 'Back', "/#{@klass.to_s.downcase.pluralize}", class: 'button tiny radius secondary' %>
+<%= link_to 'Back', url_for(@owner), class: 'button tiny radius secondary' %>

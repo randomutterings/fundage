@@ -1,17 +1,7 @@
 <h1>New Entry</h1>
 
-<%= form_for @entry do |f| %>
-  <% if @entry.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
-
-      <ul>
-      <% @entry.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= simple_form_for @entry do |f| %>
+  <%= f.error_notification %>
 
   <ul>
     <%= f.fields_for :debits do |df| %>

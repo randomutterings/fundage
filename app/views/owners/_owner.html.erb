@@ -13,7 +13,7 @@
 <% end %>
 
 <p>
-  <%= link_to 'Show', owner, class: 'button tiny radius secondary' unless current_page?(controller: @klass.to_s.downcase.pluralize, action: 'show', id: owner.id)%>
+  <%= link_to 'Show', owner, class: 'button tiny radius secondary' unless current_page? url_for(owner) %>
   <%= link_to 'Destroy', owner, method: :delete, data: { confirm: {title: "Are you sure?", body: "This action can't be undone."} }, class: 'button tiny radius alert' %>
 </p>
 
