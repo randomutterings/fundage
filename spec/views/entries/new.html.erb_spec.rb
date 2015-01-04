@@ -8,7 +8,7 @@ RSpec.describe 'entries/new', type: :view do
 
   it 'renders new entry form' do
     render
-    expect(rendered).to match('<form accept-charset="UTF-8" action="/entries" class="new_entry" id="new_entry" method="post">')
+    expect(rendered).to match('<form accept-charset="UTF-8" action="/entries" class="simple_form new_entry" id="new_entry" method="post" novalidate="novalidate">')
   end
 
   it 'renders fields for debits' do

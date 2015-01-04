@@ -7,38 +7,36 @@ RSpec.describe EntriesController, type: :controller do
   let(:bottomless_wallet) { BottomlessWallet.create!(owner: team) }
 
   let!(:existing_entry) do
-    Entry.create!({
-      credits_attributes: [amount: 1.1, wallet_id: wallet.to_param],
-      debits_attributes: [amount: 1.1, wallet_id: bottomless_wallet.to_param]
-    })
+    Entry.create!(credits_attributes: [amount: 1.1, wallet_id: wallet.to_param],
+                  debits_attributes: [amount: 1.1, wallet_id: bottomless_wallet.to_param])
   end
 
   let(:valid_attributes) do
     {
-      "debits_attributes"=> {
-        "0"=> {"amount"=>"1.1", "wallet_id"=> wallet.to_param}
+      'debits_attributes' => {
+        '0' => { 'amount' => '1.1', 'wallet_id' => wallet.to_param }
       },
-      "credits_attributes"=> {
-        "0"=> {"amount"=>"1.1", "wallet_id"=> bottomless_wallet.to_param}
+      'credits_attributes' => {
+        '0' => { 'amount' => '1.1', 'wallet_id' => bottomless_wallet.to_param }
       }
     }
   end
 
   let(:invalid_attributes) do
     {
-      "credits_attributes"=> {
-        "0"=> {"amount"=>"1.1", "wallet_id"=> bottomless_wallet.to_param}
+      'credits_attributes' => {
+        '0' => { 'amount' => '1.1', 'wallet_id' => bottomless_wallet.to_param }
       }
     }
   end
 
   let(:invalid_nested_attributes) do
     {
-      "debits_attributes"=> {
-        "0"=> {"amount"=>"", "wallet_id"=> wallet.to_param}
+      'debits_attributes' => {
+        '0' => { 'amount' => '', 'wallet_id' => wallet.to_param }
       },
-      "credits_attributes"=> {
-        "0"=> {"amount"=>"1.1", "wallet_id"=> bottomless_wallet.to_param}
+      'credits_attributes' => {
+        '0' => { 'amount' => '1.1', 'wallet_id' => bottomless_wallet.to_param }
       }
     }
   end
@@ -93,7 +91,7 @@ RSpec.describe EntriesController, type: :controller do
         expect(assigns(:entry)).to be_a_new(Entry)
       end
 
-      it "re-renders the 'new' template" do
+      it 're-renders the "new" template' do
         post :create, entry: invalid_attributes
         expect(response).to render_template('new')
       end
@@ -105,7 +103,7 @@ RSpec.describe EntriesController, type: :controller do
         expect(assigns(:entry)).to be_a_new(Entry)
       end
 
-      it "re-renders the 'new' template" do
+      it 're-renders the "new" template' do
         post :create, entry: invalid_nested_attributes
         expect(response).to render_template('new')
       end
