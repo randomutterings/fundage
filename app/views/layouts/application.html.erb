@@ -14,21 +14,40 @@
 
   <body>
     <div class="row">
+      <div class="icon-bar five-up" role="navigation">
+        <%= link_to users_path, aria: { labelledby: "#userslabel"}, class: 'item' do %>
+          <i class="fi-torso"></i>
+          <label id='userslabel'>Users</label>
+        <% end %>
+
+        <%= link_to teams_path, :"aria-labelledby" => "#teamslabel", class: 'item' do %>
+          <i class="fi-torsos-female-male"></i>
+          <label id='teamslabel'>Teams</label>
+        <% end %>
+
+        <%= link_to owners_path, :"aria-labelledby" => "#ownerslabel", class: 'item' do %>
+          <i class="fi-torsos-all"></i>
+          <label id='ownerslabel'>Everyone</label>
+        <% end %>
+
+        <%= link_to entries_path, aria: { labelledby: "#entrieslabel"}, class: 'item' do %>
+          <i class="fi-results"></i>
+          <label id='entrieslabel'>Check the Ledger</label>
+        <% end %>
+
+        <%= link_to new_entry_path, aria: { labelledby: "#newentrylabel"}, class: 'item' do %>
+          <i class="fi-share"></i>
+          <label id='newentrylabel'>Share Fundage!</label>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, class: "alert-box #{name} radius" if msg.is_a?(String) %>
       <% end %>
-    </div>
 
-    <div class="row">
-      <div class="small-3 column">
-        <%= link_to 'Owners', owners_path %> ->
-        [<%= link_to 'Users', users_path %>
-        <%= link_to 'Teams', teams_path %>]
-        <%= link_to 'Entries', entries_path %>
-      </div>
-      <div class="small-9 column">
-        <%= yield %>
-      </div>
+      <%= yield %>
+    </div>
     </div>
   </body>
 </html>

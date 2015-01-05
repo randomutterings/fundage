@@ -1,0 +1,2 @@
+# don't normalize svg files to use lf instead of crlf
+*.svg binary
