@@ -7,14 +7,10 @@
 
   <% %w(debits credits).each do |submodel| %>
     <%= f.simple_fields_for submodel.to_sym do |sf| %>
-      <div class='row'>
-        <div class="small-6 column">
-          <%= sf.input :amount %>
-        </div>
-        <div class="small-6 column">
-          <%= sf.association :wallet, prompt: :translate %>
-        </div>
-      </div>
+      <ul class="small-block-grid-2">
+        <li><%= sf.input :amount %></li>
+        <li><%= sf.association :wallet, prompt: :translate %></li>
+      </ul>
     <% end %>
   <% end %>
 
