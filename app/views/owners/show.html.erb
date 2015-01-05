@@ -1,6 +1,6 @@
 <h1>
   <%= @owner.name %>&nbsp;
-  <small> Balance: <%= @owner.balance %></small>
+  <small> Balance: <%= number_to_currency(@owner.balance) %></small>
 </h1>
 
 </br>
@@ -15,14 +15,20 @@
           <th>Date</th>
           <th>Amount</th>
           <th>Transfered to</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <%- @owner.debits.each do |debit| %>
           <tr>
             <td><%= debit.created_at %></td>
-            <td><%= debit.amount %></td>
+            <td><%= number_to_currency(debit.amount) %></td>
             <td><%= debit.to %></td>
+            <td>
+              <%= link_to debit.entry do %>
+                <i class="fi-magnifying-glass style1"></i>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>
@@ -37,14 +43,20 @@
           <th>Date</th>
           <th>Amount</th>
           <th>Received from</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <%- @owner.credits.each do |credit| %>
           <tr>
             <td><%= credit.created_at %></td>
-            <td><%= credit.amount %></td>
-            <td><%= credit.to %></td>
+            <td><%= number_to_currency(credit.amount) %></td>
+            <td><%= credit.from %></td>
+            <td>
+              <%= link_to credit.entry do %>
+                <i class="fi-magnifying-glass style1"></i>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>
@@ -52,8 +64,4 @@
   </li>
 </ul>
 
-<p>
-  <%= link_to "Destroy #{@owner.name}", @owner, method: :delete, data: { confirm: {title: "You're about to delete #{@owner.name}!", body: "There is no undo, are you sure?"} }, class: 'button tiny radius alert' if @owner.debits.empty? %>
-</p>
-
-<br>
+<%= link_to "Destroy #{@owner.name}", @owner, method: :delete, data: { confirm: {title: "You're about to delete #{@owner.name}!", body: "There is no undo, are you sure?"} }, class: 'button tiny radius alert' if @owner.debits.empty? %>

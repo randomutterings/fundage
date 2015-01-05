@@ -20,6 +20,10 @@ class Entry < ActiveRecord::Base
     credits.first.name
   end
 
+  def amount
+    credits.first.amount
+  end
+
   private
 
   def check_balance

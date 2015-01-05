@@ -1,3 +1,49 @@
-<%= render partial: 'entry', object: @entry %>
+<h1>
+  Entry #<%= @entry.to_param %>&nbsp;
+  <small> Date: <%= @entry.created_at %></small>
+</h1>
 
-<%= link_to 'Back', entries_path, class: 'button tiny radius' %>
+</br>
+
+<ul class="small-block-grid-2">
+  <li>
+    <h2>Debits</h2>
+
+    <table class="dataTable" width="100%">
+      <thead>
+        <tr>
+          <th>Amount</th>
+          <th>Transfered to</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%- @entry.debits.each do |debit| %>
+          <tr>
+            <td><%= number_to_currency(debit.amount) %></td>
+            <td><%= debit.to %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <h2>Credits</h2>
+
+    <table class="dataTable" width="100%">
+      <thead>
+        <tr>
+          <th>Amount</th>
+          <th>Received from</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%- @entry.credits.each do |credit| %>
+          <tr>
+            <td><%= number_to_currency(credit.amount) %></td>
+            <td><%= credit.from %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </li>
+</ul>
