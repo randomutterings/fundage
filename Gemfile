@@ -19,6 +19,8 @@ gem 'foundation-rails'
 gem 'simple_form'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+# This gem packages the jQuery DataTables plugin for easy use with the asset pipleine
+gem 'jquery-datatables-rails', '~> 3.1.1'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # jquery-turbolinks fixes event an binding problem caused by Turbolinks

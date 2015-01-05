@@ -592,3 +592,9 @@
 .fi-yen:before { content: "\f218"; }
 .fi-zoom-in:before { content: "\f219"; }
 .fi-zoom-out:before { content: "\f21a"; }
+
+i.style1 { font-size:28px; }
+i.style2 { font-size:28px; text-shadow:0 1px 3px rgba(0,0,0,0.25); color:#E33100; }
+i.style3 { font-size:28px; color:#E33100; text-shadow:0 0 5px #fff,0 0 10px #fff,0 0 15px #fff,0 0 20px #E33100,0 0 30px #E33100,0 0 40px #E33100,0 0 50px #E33100,0 0 75px #E33100; }
+i.style4 { font-size:28px; text-shadow:0 1px 3px rgba(0,0,0,0.25); color:#A9014B; }
+i.style5 { font-size:28px; text-shadow:1px 4px 6px #FFF,0 0 0 #000,1px 4px 6px #FFF; }

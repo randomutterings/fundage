@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require dataTables/jquery.dataTables
+//= require dataTables/jquery.dataTables.foundation
 //= require foundation
 //= require turbolinks
 //= require_tree .
@@ -20,4 +22,5 @@
 $(document).ready(function () {
   $(document).foundation();
   $(document).confirmWithReveal();
+  $('.dataTable').DataTable();
 });

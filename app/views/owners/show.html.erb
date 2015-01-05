@@ -1,3 +1,59 @@
-<%= render partial: 'owner', object: @owner %>
+<h1>
+  <%= @owner.name %>&nbsp;
+  <small> Balance: <%= @owner.balance %></small>
+</h1>
 
-<%= link_to 'Back', "/#{@klass.to_s.downcase.pluralize}", class: 'button tiny radius secondary' %>
+</br>
+
+<ul class="small-block-grid-2">
+  <li>
+    <h2>Debits</h2>
+
+    <table class="dataTable" width="100%">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Amount</th>
+          <th>Transfered to</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%- @owner.debits.each do |debit| %>
+          <tr>
+            <td><%= debit.created_at %></td>
+            <td><%= debit.amount %></td>
+            <td><%= debit.to %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <h2>Credits</h2>
+
+    <table class="dataTable" width="100%">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Amount</th>
+          <th>Received from</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%- @owner.credits.each do |credit| %>
+          <tr>
+            <td><%= credit.created_at %></td>
+            <td><%= credit.amount %></td>
+            <td><%= credit.to %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<p>
+  <%= link_to "Destroy #{@owner.name}", @owner, method: :delete, data: { confirm: {title: "You're about to delete #{@owner.name}!", body: "There is no undo, are you sure?"} }, class: 'button tiny radius alert' if @owner.debits.empty? %>
+</p>
+
+<br>
