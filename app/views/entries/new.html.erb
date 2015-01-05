@@ -1,34 +1,25 @@
 <h1>New Entry</h1>
 
 <%= simple_form_for @entry do |f| %>
-  <%= f.error_notification %>
+  <% f.object.errors[:base].each do |error| %>
+    <%= content_tag :div, error, class: "alert-box alert radius" %>
+  <% end %>
 
-  <ul>
-    <%= f.fields_for :debits do |df| %>
-      <li>
-        <%= df.label :amount, 'Withdraw' %>
-        <%= df.text_field :amount %>
-
-        <%= df.label :wallet_id, 'From' %>
-        <%= df.collection_select(:wallet_id, @wallets, :id, :name) %>
-      </li>
+  <% %w(debits credits).each do |submodel| %>
+    <%= f.simple_fields_for submodel.to_sym do |sf| %>
+      <div class='row'>
+        <div class="small-6 column">
+          <%= sf.input :amount %>
+        </div>
+        <div class="small-6 column">
+          <%= sf.association :wallet, prompt: :translate %>
+        </div>
+      </div>
     <% end %>
-  </ul>
+  <% end %>
 
-  <ul>
-    <%= f.fields_for :credits do |df| %>
-      <li>
-        <%= df.label :amount, 'Deposit' %>
-        <%= df.text_field :amount %>
-
-        <%= df.label :wallet_id, 'To' %>
-        <%= df.collection_select(:wallet_id, @wallets, :id, :name) %>
-      </li>
-    <% end %>
-  </ul>
-
-  <div class="actions">
-    <%= f.submit %>
+  <div class='form-actions'>
+    <%= f.button :submit %>
   </div>
 <% end %>
 

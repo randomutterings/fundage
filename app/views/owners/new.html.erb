@@ -1,12 +1,12 @@
 <h1>New <%= @owner.class.to_s.humanize %></h1>
 
-<%= simple_form_for @owner, data: {abide: ''} do |f| %>
+<%= simple_form_for @owner, wrapper: :inline_form do |f| %>
   <div class='row'>
     <div class='small-10 columns'>
       <div class='row collapse'>
-        <%= f.input :name, placeholder: "Enter a name for the #{f.object_name}", input_html: {required: ''} %>
+        <%= f.input :name, placeholder: "Enter a name for the #{f.object_name}" %>
         <div class='small-2 columns form-actions'>
-          <%= f.button :wrapped, class: "postfix" %>
+          <%= f.button :submit, class: "postfix" %>
         </div>
       </div>
     </div>

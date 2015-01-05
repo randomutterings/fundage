@@ -17,7 +17,7 @@ SimpleForm.setup do |config|
     b.use :label_input
     b.use :error, wrap_with: { tag: :small, class: :error }
 
-    # b.use :hint,  wrap_with: { tag: :span, class: :hint }
+    # b.use :hint,  wrap_with: { tag: :small, class: :hint }
   end
 
   config.wrappers :horizontal_form, tag: 'div', class: 'row', hint_class: :field_with_hint, error_class: :error do |b|
@@ -27,12 +27,13 @@ SimpleForm.setup do |config|
     b.optional :pattern
     b.optional :min_max
     b.optional :readonly
+    b.use :error, wrap_with: { tag: :small, class: :error }
 
-    b.wrapper :label_wrapper, tag: :div, class: 'small-3 columns' do |ba|
+    b.wrapper :label_wrapper, tag: :div, class: 'small-2 columns' do |ba|
       ba.use :label, class: 'right inline'
     end
 
-    b.wrapper :right_input_wrapper, tag: :div, class: 'small-9 columns' do |ba|
+    b.wrapper :right_input_wrapper, tag: :div, class: 'small-10 columns' do |ba|
       ba.use :input
       ba.use :error, wrap_with: { tag: :small, class: :error }
       # ba.use :hint,  wrap_with: { tag: :span, class: :hint }
@@ -72,8 +73,8 @@ SimpleForm.setup do |config|
     b.use :label, class: 'hidden-for-small-up'
     b.use :input
 
-    # b.use :error, wrap_with: { tag: :small, class: :error }
-    b.use :hint, wrap_with: { tag: :small, class: :error }
+    b.use :error, wrap_with: { tag: :small, class: :error }
+    # b.use :hint,  wrap_with: { tag: :small, class: :hint }
   end
 
   # Examples of use:
@@ -88,11 +89,11 @@ SimpleForm.setup do |config|
     end
 
     b.use :error, wrap_with: { tag: :small, class: :error }
-    # b.use :hint,  wrap_with: { tag: :span, class: :hint }
+    # b.use :hint, wrap_with: { tag: :small, class: :hint }
   end
 
   # CSS class for buttons
-  config.button_class = 'button'
+  config.button_class = 'button small radius'
 
   # Set this to div to make the checkbox and radio properly work
   # otherwise simple_form adds a label tag instead of a div arround
@@ -103,5 +104,5 @@ SimpleForm.setup do |config|
   config.error_notification_class = 'alert-box alert'
 
   # The default wrapper to be used by the FormBuilder.
-  config.default_wrapper = :inline_form
+  config.default_wrapper = :vertical_form
 end

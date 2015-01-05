@@ -23,7 +23,7 @@ class Entry < ActiveRecord::Base
   private
 
   def check_balance
-    errors[:base] << 'The credits and debits are not balanced' unless balanced?
+    errors[:base] << 'The entry does not balance, please check each amount' unless balanced?
   end
 
   def balanced?

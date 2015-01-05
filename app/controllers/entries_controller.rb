@@ -16,7 +16,6 @@ class EntriesController < ApplicationController
 
   # GET /entries/new
   def new
-    @wallets = Wallet.all
     @entry = Entry.new
     @entry.credits << Credit.new
     @entry.debits << Debit.new
@@ -25,7 +24,6 @@ class EntriesController < ApplicationController
   # POST /entries
   # POST /entries.json
   def create
-    @wallets = Wallet.all
     @entry = Entry.new(entry_params)
 
     flash[:notice] = 'Entry was successfully created.' if @entry.save

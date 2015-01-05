@@ -4,7 +4,7 @@ class Amount < ActiveRecord::Base
   belongs_to :wallet
 
   validates_presence_of :type, :entry, :wallet
-  validates :amount, numericality: { greater_than: 0 }
+  validates :amount, presence: true, numericality: { greater_than: 0 }
   validate :check_funds
 
   delegate :name, to: :wallet

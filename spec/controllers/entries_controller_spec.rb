@@ -11,36 +11,6 @@ RSpec.describe EntriesController, type: :controller do
                   debits_attributes: [amount: 1.1, wallet_id: bottomless_wallet.to_param])
   end
 
-  let(:valid_attributes) do
-    {
-      'debits_attributes' => {
-        '0' => { 'amount' => '1.1', 'wallet_id' => wallet.to_param }
-      },
-      'credits_attributes' => {
-        '0' => { 'amount' => '1.1', 'wallet_id' => bottomless_wallet.to_param }
-      }
-    }
-  end
-
-  let(:invalid_attributes) do
-    {
-      'credits_attributes' => {
-        '0' => { 'amount' => '1.1', 'wallet_id' => bottomless_wallet.to_param }
-      }
-    }
-  end
-
-  let(:invalid_nested_attributes) do
-    {
-      'debits_attributes' => {
-        '0' => { 'amount' => '', 'wallet_id' => wallet.to_param }
-      },
-      'credits_attributes' => {
-        '0' => { 'amount' => '1.1', 'wallet_id' => bottomless_wallet.to_param }
-      }
-    }
-  end
-
   describe 'GET index' do
     it 'assigns all entries as @entries' do
       get :index
@@ -63,6 +33,17 @@ RSpec.describe EntriesController, type: :controller do
   end
 
   describe 'POST create' do
+    let(:valid_attributes) do
+      {
+        'debits_attributes' => {
+          '0' => { 'amount' => '1.1', 'wallet_id' => wallet.to_param }
+        },
+        'credits_attributes' => {
+          '0' => { 'amount' => '1.1', 'wallet_id' => bottomless_wallet.to_param }
+        }
+      }
+    end
+
     describe 'with valid params' do
       it 'creates a new Entry' do
         # rubocop:disable Style/Blocks
@@ -86,6 +67,14 @@ RSpec.describe EntriesController, type: :controller do
     end
 
     describe 'with invalid params' do
+      let(:invalid_attributes) do
+        {
+          'credits_attributes' => {
+            '0' => { 'amount' => '1.1', 'wallet_id' => bottomless_wallet.to_param }
+          }
+        }
+      end
+
       it 'assigns a newly created but unsaved entry as @entry' do
         post :create, entry: invalid_attributes
         expect(assigns(:entry)).to be_a_new(Entry)
@@ -98,6 +87,17 @@ RSpec.describe EntriesController, type: :controller do
     end
 
     describe 'with invalid nested params' do
+      let(:invalid_nested_attributes) do
+        {
+          'debits_attributes' => {
+            '0' => { 'amount' => '', 'wallet_id' => wallet.to_param }
+          },
+          'credits_attributes' => {
+            '0' => { 'amount' => '1.1', 'wallet_id' => bottomless_wallet.to_param }
+          }
+        }
+      end
+
       it 'assigns a newly created but unsaved entry as @entry' do
         post :create, entry: invalid_nested_attributes
         expect(assigns(:entry)).to be_a_new(Entry)
@@ -105,6 +105,29 @@ RSpec.describe EntriesController, type: :controller do
 
       it 're-renders the "new" template' do
         post :create, entry: invalid_nested_attributes
+        expect(response).to render_template('new')
+      end
+    end
+
+    describe 'with unbalanced nested params' do
+      let(:unbalanced_nested_attributes) do
+        {
+          'debits_attributes' => {
+            '0' => { 'amount' => '', 'wallet_id' => wallet.to_param }
+          },
+          'credits_attributes' => {
+            '0' => { 'amount' => '1.1', 'wallet_id' => bottomless_wallet.to_param }
+          }
+        }
+      end
+
+      it 'assigns a newly created but unsaved entry as @entry' do
+        post :create, entry: unbalanced_nested_attributes
+        expect(assigns(:entry)).to be_a_new(Entry)
+      end
+
+      it 're-renders the "new" template' do
+        post :create, entry: unbalanced_nested_attributes
         expect(response).to render_template('new')
       end
     end
