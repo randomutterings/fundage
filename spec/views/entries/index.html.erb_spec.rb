@@ -17,11 +17,16 @@ RSpec.describe 'entries/index', type: :view do
 
   it 'renders debits' do
     render
-    expect(rendered).to match('1.1 from The Mighty Morphin Stock Exchangers')
+    expect(rendered).to match('The Mighty Morphin Stock Exchangers')
   end
 
   it 'renders credits' do
     render
-    expect(rendered).to match('1.1 to Princess Bacon')
+    expect(rendered).to match('Princess Bacon')
+  end
+
+  it 'renders amounts' do
+    render
+    expect(rendered).to match('1.1')
   end
 end
