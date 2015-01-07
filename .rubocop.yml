@@ -9,4 +9,5 @@ AllCops:
     - 'Guardfile'
     - 'bin/*'
     - 'db/**/*'
+    - 'vendor/**/*'
   RunRailsCops: true
